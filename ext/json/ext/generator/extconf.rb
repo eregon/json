@@ -1,6 +1,6 @@
 require 'mkmf'
 
-if RUBY_ENGINE == 'truffleruby'
+if RUBY_ENGINE == 'truffleruby2'
   # The pure-Ruby generator is faster on TruffleRuby, so skip compiling the generator extension
   File.write('Makefile', dummy_makefile("").join)
 else

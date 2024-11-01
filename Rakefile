@@ -233,7 +233,7 @@ if defined?(RUBY_ENGINE) and RUBY_ENGINE == 'jruby'
   task :release => :build
 else
   desc "Compiling extension"
-  if RUBY_ENGINE == 'truffleruby'
+  if RUBY_ENGINE == 'truffleruby2'
     task :compile => [ :ragel, EXT_PARSER_DL ]
   else
     task :compile => [ :ragel, EXT_PARSER_DL, EXT_GENERATOR_DL ]

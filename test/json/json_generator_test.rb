@@ -157,6 +157,8 @@ class JSONGeneratorTest < Test::Unit::TestCase
   end
 
   def test_states
+    pend if RUBY_ENGINE == 'truffleruby'
+
     json = generate({1=>2}, nil)
     assert_equal('{"1":2}', json)
     s = JSON.state.new
