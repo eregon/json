@@ -33,6 +33,8 @@ def implementations(ruby_obj)
 end
 
 def benchmark_encoding(benchmark_name, ruby_obj, check_expected: true, except: [])
+  return unless benchmark_name == "mixed utf8" or benchmark_name == "mostly utf8"
+
   json_output = JSON.dump(ruby_obj)
   puts "== Encoding #{benchmark_name} (#{json_output.bytesize} bytes)"
 
@@ -40,6 +42,7 @@ def benchmark_encoding(benchmark_name, ruby_obj, check_expected: true, except: [
   except.each { |i| impls.delete(i) }
 
   Benchmark.ips do |x|
+    x.warmup = 5
     expected = ::JSON.dump(ruby_obj) if check_expected
     impls.values.each do |name, block|
       begin
